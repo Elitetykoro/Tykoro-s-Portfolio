@@ -1,5 +1,30 @@
 import { Vector2 } from "./vector2.js";
 
+
+export class SpriteAnimation {
+    constructor({ duration, frames }) {
+        this.duration = duration;
+        this.frames = frames;
+        this.elapsedTime = 0;
+        this.currentFrameIndex = 0;
+    }
+
+    step(delta) {
+        this.elapsedTime += delta;
+        if (this.elapsedTime >= this.frames[this.currentFrameIndex].time) {
+            this.currentFrameIndex++;
+            if (this.currentFrameIndex >= this.frames.length) {
+                this.currentFrameIndex = 0; // Loop animation
+                this.elapsedTime = 0;
+            }
+        }
+    }
+
+    get frame() {
+        return this.frames[this.currentFrameIndex].frame;
+    }
+}
+
 export class Sprite
 {
     constructor
@@ -11,6 +36,7 @@ export class Sprite
         frame, // the specific frame you want to show
         scale, // scale of the image
         position, // where from the top left corner
+        animation,
     }) 
     {
         this.resource = resource;
@@ -21,9 +47,10 @@ export class Sprite
         this.frameMap = new Map();
         this.scale = scale ?? 1;
         this.position = position ?? new Vector2(0,0);
-        this.buildFramMap();
+        this.animation = animation ?? null;
+        this.buildFrameMap();
     }
-    buildFramMap()
+    buildFrameMap()
     {
         let frameCount = 0;
         for (let v = 0; v < this.vFrames; v++)
@@ -36,6 +63,14 @@ export class Sprite
                 
             }
         }
+    }
+
+    step(delta) {
+        if (!this.animation) {
+            return;
+        }
+        this.animation.step(delta);
+        this.frame = this.animation.frame;
     }
 
     drawImage(ctx, x, y)

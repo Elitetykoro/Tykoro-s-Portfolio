@@ -7,8 +7,8 @@ class Resources
         {
             sky: "/game/sprites/sky.png",
             ground: "/game/sprites/ground.png",
-            hero: "/game/sprites/hero-sheet.png",
-            shadow: "/game/sprites/shadow.png"
+            player: "/game/sprites/miniME.png",
+            shadow: "/game/sprites/playerShadow.png"
         }
 
         // Variable for all images
