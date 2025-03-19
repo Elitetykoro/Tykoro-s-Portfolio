@@ -1,5 +1,4 @@
-import { Animations } from '../../animations.js';
-import { SpriteAnimation } from '../../sprite.js';
+import { SpriteAnimation } from '../../animations.js';
 
 const makeWalkingFrames = (rootFrame = 0) => {
     return new SpriteAnimation({
