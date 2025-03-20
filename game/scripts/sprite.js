@@ -1,6 +1,7 @@
+import { GameObject } from "./gameobject.js";
 import { Vector2 } from "./vector2.js";
 
-export class Sprite
+export class Sprite extends GameObject
 {
     constructor
     ({
@@ -14,6 +15,7 @@ export class Sprite
         animation,
     }) 
     {
+        super({});
         this.resource = resource;
         this.frameSize = frameSize ?? new Vector2(16,16);
         this.hFrames = hFrames ?? 1;

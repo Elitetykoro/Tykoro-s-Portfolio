@@ -2,12 +2,12 @@ import { SpriteAnimation } from '../../animations.js';
 
 const makeWalkingFrames = (rootFrame = 0) => {
     return new SpriteAnimation({
-        duration: 400,
+        duration: 800,
         frames: [
             { time: 0, frame: rootFrame },
-            { time: 100, frame: rootFrame + 1 },
-            { time: 200, frame: rootFrame + 2 },
-            { time: 300, frame: rootFrame + 3 }
+            { time: 200, frame: rootFrame + 1 },
+            { time: 400, frame: rootFrame + 2 },
+            { time: 600, frame: rootFrame + 3 }
         ]
     });
 };
