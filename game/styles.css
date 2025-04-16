@@ -1,10 +1,18 @@
 html, body{
   padding: 0;
   margin: 0;
+  background-color: black;
   overflow: hidden;
   image-rendering: pixelated;
 }
 canvas{
   width: 100%;
   background: black;
+}
+img{
+  display: flex;
+  justify-content: center;
+  width: 75vw;
+  height: auto;
+
 }

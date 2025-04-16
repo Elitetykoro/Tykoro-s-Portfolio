@@ -10,3 +10,11 @@ export const isSpaceFree = (walls, x, y) =>
 
     return !isWallPresent;
 }
+
+export const isSpaceInteractible = (interactible, x, y) =>
+    {
+        const str = `${x},${y}`;
+        const isInterectiblePresent = interactible.has(str);
+    
+        return !isInterectiblePresent;
+    }

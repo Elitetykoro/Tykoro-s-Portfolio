@@ -1,8 +1,8 @@
 import { GameObject } from "../../gameobject.js";
-import { gridCells, isSpaceFree } from "../../helpers/grid.js";
+import { gridCells, isSpaceFree, isSpaceInteractible } from "../../helpers/grid.js";
 import { moveTowards } from "../../helpers/moveTowards.js";
-import { DOWN, LEFT, RIGHT, UP } from "../../input.js";
-import { walls } from "../../levels/overworld.js";
+import { DOWN, LEFT, RIGHT, UP, Input } from "../../input.js";
+import { interactibles, walls } from "../../levels/overworld.js";
 import { resources } from "../../resource.js";
 import { Sprite } from "../../sprite.js";
 import { Vector2 } from "../../vector2.js";
@@ -34,6 +34,7 @@ export class Player extends GameObject {
 
         this.facingDirection = DOWN;
         this.destinationPosition = this.position.duplicate();
+        this.activeKey = new Input();
     }
 
     step(delta, root){
@@ -92,13 +93,16 @@ export class Player extends GameObject {
             this.body.animation = WALK_RIGHT;
         }
     
+        if(isSpaceInteractible(interactibles, nextX, nextY))
+            {
+                console.log(nextX,nextY, "is interactible!")
+            }
         if(isSpaceFree(walls, nextX, nextY))
         {
             this.destinationPosition.x = nextX;
             this.destinationPosition.y = nextY;
         }
-    
+
     
     }
-    
 }

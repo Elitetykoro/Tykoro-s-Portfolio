@@ -1,6 +1,6 @@
 import { GameLoop } from './gameLoop.js';
 import { gridCells } from './helpers/grid.js';
-import { Input } from './input.js';
+import { DOWN, Input } from './input.js';
 import { resources } from './resource.js'
 import { Sprite } from './sprite.js';
 import { Vector2 } from './vector2.js';
@@ -8,9 +8,15 @@ import { GameObject } from './gameobject.js';
 import { Player } from './objects/player/player.js';
 
 // grab canvas 
-const canvas = document.querySelector("#game-canvas");
-const ctx = canvas.getContext("2d");
+const gameCanvas = document.querySelector("#game-canvas");
+const gameContext = gameCanvas.getContext("2d");
 
+// grab second canvas
+const textCanvas = document.querySelector("#text-canvas");
+const textContext = textCanvas.getContext("2d");
+
+textContext.font = "50px Arial";
+textContext.fillText("Hello World",10,80);
 // make a main scene instance
 const mainScene = new GameObject({
     position: new Vector2(0,0),
@@ -33,14 +39,23 @@ mainScene.addChild(player);
 mainScene.input = new Input();
 
 
+
 // Make an update loop and draw loop
 const update = (delta) => 
 {
     mainScene.stepEntry(delta, mainScene)
+
+    if(mainScene.input.interactKey)
+    {
+        player.checkInFront();
+    }
 }
+
+
+
 const draw = () => 
     {
-        mainScene.draw(ctx, 0, 0);
+        mainScene.draw(gameContext, 0, 0);
     }
 
 // START GAME!!!

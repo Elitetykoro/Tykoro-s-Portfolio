@@ -34,7 +34,6 @@ export class Sprite extends GameObject
         {
             for(let h = 0; h < this.hFrames; h++)
             {
-                console.log(h,v);
                 this.frameMap.set(frameCount, new Vector2(this.frameSize.x * h,this.frameSize.y * v))
                 frameCount++;
                 

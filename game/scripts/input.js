@@ -8,6 +8,7 @@ export class Input
     constructor()
     {
         this.heldDirection = [];
+        this.interactKey = false;
 
         document.addEventListener("keydown", (key) =>
         {
@@ -26,6 +27,10 @@ export class Input
             if (key.code === "ArrowLeft" || key.code === "KeyA")
             {
                     this.onMoveKeyPressed(LEFT);
+            }
+            if (key.code === "Space")
+            {
+                this.interactButtonPressed();
             }
         })
 
@@ -46,6 +51,11 @@ export class Input
                 if (key.code === "ArrowLeft" || key.code === "KeyA")
                 {
                         this.onMoveKeyReleased(LEFT);
+                }
+                
+            if (key.code === "Space")
+                {
+                    this.interactButtonRelease();
                 }
             })
     }
@@ -71,5 +81,13 @@ export class Input
         }
 
         this.heldDirection.splice(index, 1);
+    }
+    interactButtonPressed()
+    {
+        this.interactKey = true;
+    }
+    interactButtonRelease()
+    {
+        this.interactKey = false;
     }
 }
