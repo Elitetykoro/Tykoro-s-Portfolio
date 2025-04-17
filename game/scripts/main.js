@@ -11,12 +11,6 @@ import { Player } from './objects/player/player.js';
 const gameCanvas = document.querySelector("#game-canvas");
 const gameContext = gameCanvas.getContext("2d");
 
-// grab second canvas
-const textCanvas = document.querySelector("#text-canvas");
-const textContext = textCanvas.getContext("2d");
-
-textContext.font = "50px Arial";
-textContext.fillText("Hello World",10,80);
 // make a main scene instance
 const mainScene = new GameObject({
     position: new Vector2(0,0),
@@ -45,13 +39,14 @@ const update = (delta) =>
 {
     mainScene.stepEntry(delta, mainScene)
 
+    // check in front of the play when pressing interact key
     if(mainScene.input.interactKey)
     {
         player.checkInFront();
     }
+
+    // what is in front of the player
 }
-
-
 
 const draw = () => 
     {

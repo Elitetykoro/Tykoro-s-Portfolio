@@ -1,8 +1,8 @@
 import { GameObject } from "../../gameobject.js";
-import { gridCells, isSpaceFree, isSpaceInteractible } from "../../helpers/grid.js";
+import { gridCells, isSpaceFree } from "../../helpers/grid.js";
 import { moveTowards } from "../../helpers/moveTowards.js";
 import { DOWN, LEFT, RIGHT, UP, Input } from "../../input.js";
-import { interactibles, walls } from "../../levels/overworld.js";
+import { Computer, walls, Arcade } from "../../levels/overworld.js";
 import { resources } from "../../resource.js";
 import { Sprite } from "../../sprite.js";
 import { Vector2 } from "../../vector2.js";
@@ -35,6 +35,8 @@ export class Player extends GameObject {
         this.facingDirection = DOWN;
         this.destinationPosition = this.position.duplicate();
         this.activeKey = new Input();
+        this.interactWithComputer = false;
+        this.interactWithArcade = false;
     }
 
     step(delta, root){
@@ -92,17 +94,29 @@ export class Player extends GameObject {
             nextX += gridSize;
             this.body.animation = WALK_RIGHT;
         }
-    
-        if(isSpaceInteractible(interactibles, nextX, nextY))
-            {
-                console.log(nextX,nextY, "is interactible!")
-            }
+
+        this.interactWithComputer = !isSpaceFree(Computer,nextX,nextY);
+        this.interactWithArcade = !isSpaceFree(Arcade,nextX,nextY);
+
+
         if(isSpaceFree(walls, nextX, nextY))
         {
             this.destinationPosition.x = nextX;
             this.destinationPosition.y = nextY;
         }
-
+    }
     
+    checkInFront()
+    {
+        const { x,y } = this.position;
+        if (this.interactWithComputer)
+        {
+            console.log("Computer ");
+        }
+        if (this.interactWithArcade)
+        {
+            console.log("Arcade ");
+        }
+        return gridCells(x, y, 16, 16);
     }
 }

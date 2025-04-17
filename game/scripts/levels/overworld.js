@@ -42,8 +42,9 @@ walls.add(`208,64`);
 walls.add(`224,64`);
 walls.add(`240,64`);
 
-export const interactibles = new Set();
+export const Computer = new Set();
+Computer.add(`80,48`);
+Computer.add(`96,48`);
 
-//Computer
-interactibles.add(`80,64`);
-interactibles.add(`96,80`);
+export const Arcade = new Set();
+Arcade.add(`160,48`);
