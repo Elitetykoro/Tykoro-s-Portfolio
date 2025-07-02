@@ -42,9 +42,28 @@ walls.add(`208,64`);
 walls.add(`224,64`);
 walls.add(`240,64`);
 
+// interactibles
+walls.add(`80,64`);
+
+walls.add(`176,96`);
+walls.add(`192,96`);
+walls.add(`208,96`);
+
 export const Computer = new Set();
 Computer.add(`80,48`);
 Computer.add(`96,48`);
 
 export const Arcade = new Set();
 Arcade.add(`160,48`);
+
+export const TrashCan = new Set();
+TrashCan.add(`112,48`);
+
+export const Project1 = new Set();
+Project1.add(`176,96`)
+
+export const Project2 = new Set();
+Project2.add(`192,96`)
+
+export const Project3 = new Set();
+Project3.add(`208,96`)

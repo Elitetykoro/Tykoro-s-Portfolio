@@ -8,7 +8,9 @@ class Resources
             sky: "/game/sprites/sky.png",
             ground: "/game/sprites/Room.png",
             player: "/game/sprites/miniME.png",
-            shadow: "/game/sprites/playerShadow.png"
+            shadow: "/game/sprites/playerShadow.png",
+            aboutme: "/images/aboutMe.png",
+            contact: "/images/contact.png"
         }
 
         // Variable for all images
